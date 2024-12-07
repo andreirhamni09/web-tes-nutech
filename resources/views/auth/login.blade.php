@@ -118,7 +118,7 @@
             </form>
         </div>
         <div class="image-section">
-            <img src="{{ secure_asset('CMS Assets/login.png') }}" alt="Illustration">
+            <img src="{{ asset('CMS Assets/login.png') }}" alt="Illustration">
         </div>
     </div>
 </body>
