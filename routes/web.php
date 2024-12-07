@@ -18,19 +18,19 @@ use App\Http\Controllers\ProdukController;
 */
 
 
-Route::get('/login', [AuthController::class, 'index'])->name('index');
-Route::post('/loginProses', [AuthController::class, 'loginProses'])->name('loginProses');
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('login', [AuthController::class, 'index'])->name('index');
+Route::post('loginProses', [AuthController::class, 'loginProses'])->name('loginProses');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Dashboard
-Route::get('/', [PagesController::class, 'index']);
-Route::get('/dashboard', [PagesController::class, 'index'])->name('dashboard');
+Route::get('', [PagesController::class, 'index']);
+Route::get('dashboard', [PagesController::class, 'index'])->name('dashboard');
 
-Route::get('/getKategori', [KategoriController::class, 'getKategori'])->name('getKategori');
-Route::get('/getProduks', [ProdukController::class, 'getProduks'])->name('getProduks');
-Route::get('/profile', [PagesController::class, 'profile'])->name('profile');
-Route::get('/getProduksByKategori', [ProdukController::class, 'getProduksByKategori'])->name('getProduksByKategori');
-Route::get('/createBarang', [PagesController::class, 'createBarang'])->name('createBarang');
+Route::get('getKategori', [KategoriController::class, 'getKategori'])->name('getKategori');
+Route::get('getProduks', [ProdukController::class, 'getProduks'])->name('getProduks');
+Route::get('profile', [PagesController::class, 'profile'])->name('profile');
+Route::post('getProduksByKategori', [ProdukController::class, 'getProduksByKategori'])->name('getProduksByKategori');
+Route::get('createBarang', [PagesController::class, 'createBarang'])->name('createBarang');
 //     $routes->post('getProduksByKategori', 'ProduksController::getProduksByKategori', ['as' => 'getProduksByKategori']);
 //     $routes->get('createBarang', 'PagesController::createBarang', ['as' => 'createBarang']);
 
