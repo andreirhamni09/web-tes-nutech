@@ -54,7 +54,7 @@
     <!-- /.content -->
 </div>
 <!-- jQuery -->
-<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ secure_asset('plugins/jquery/jquery.min.js') }}"></script>
 <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
 
@@ -175,7 +175,7 @@
                 {
                     data: 'produks_img',
                     render: function(data, type, row) {
-                        return `<image src="{{ asset('CMS Assets') }}/${data}"alt="AdminLTE Logo" class="nav-icon" style="opacity: 0.8;" width="50" height="50"/>`;
+                        return `<image src="{{ secure_asset('CMS Assets') }}/${data}"alt="AdminLTE Logo" class="nav-icon" style="opacity: 0.8;" width="50" height="50"/>`;
                     },
                 },
                 {
