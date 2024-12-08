@@ -111,11 +111,17 @@
         <div class="form-section">
             <h1>SIMS Web App</h1>
             <p>Masuk atau buat akun untuk memulai</p>
-            <form action="/loginProses" method="post">
+            <form action="{{ route('loginProses') }}" method="post">
+                @csrf
                 <input type="email" placeholder="Masukkan email anda" name="email" id="email" require>
                 <input type="password" placeholder="Masukkan password anda" name="password" id="password" require>
                 <button type="submit">Masuk</button>
             </form>
+            @if(session()->has('error'))
+                <div style="color: red;">
+                    {{session('error')}}
+                </div>
+            @endif
         </div>
         <div class="image-section">
             <img src="{{ asset('CMS Assets/login.png') }}" alt="Illustration">

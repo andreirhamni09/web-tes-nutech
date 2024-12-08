@@ -37,7 +37,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('logout') }}" class="nav-link">
+                <a href="{{ url('/logout') }}/{{session('users')[0]->users_id}}" class="nav-link">
                   <img src="{{ asset('CMS Assets/SignOut.png') }}" class="nav-icon mr-2"/>
                   <p class="mr-2 font-weight-bold text-white">Logout</p>
                 </a>

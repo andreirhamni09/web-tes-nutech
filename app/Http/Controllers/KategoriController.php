@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Kategories;
 use Exception;
 class KategoriController extends Controller
 {
+    protected $kategoriFunction;
+    public function __construct() {
+        $this->kategoriFunction = new Kategories();
+    }
+
     public function getKategori()
     {
-        try {
-            $sql     = "SELECT * FROM kategories"; 
-            $results['data'] = DB::select($sql);
-            return response()->json($results);            
-        } catch (Exception $e) {
-            return "Query Error: " . $e->getMessage();
-        }
+        $results = $this->kategoriFunction->getKategori();
+        return response()->json($results);
     }
 }

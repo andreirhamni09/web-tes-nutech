@@ -20,6 +20,16 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            @if(session('delete'))
+                <div class="row">
+                    <div class="col-6">
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('delete') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    </div>
+                </div>
+            @endif
             <div class="row">
                 <div class="col-2 mb-2">
                     <div class="custom-search-container">
@@ -27,12 +37,10 @@
                     </div>
                 </div>
                 <div class="col-2 mb-2">
-                    <select id="selectKategori" class="form-control" style="font-family: 'Font Awesome 5 Free'; font-weight:700;" >
+                    <select id="selectKategori" name="selectKategori" class="form-control" style="font-family: 'Font Awesome 5 Free'; font-weight:700;" >
                         <option value="all" selected>&#xf1b2; Semua</option>
                     </select>
                 </div>
-                
-                
                 <div class="col-8 mb-2 d-flex flex-row-reverse">
                     <button id="addProduk"  class="btn btn-danger align-middle">
                         <img src="{{asset('CMS Assets/PlusCircle.png') }}" class="nav-icon mr-1 align-middle"/>
@@ -159,6 +167,11 @@
 
 
     $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')  // Get token from meta tag
+            }
+        });
         setupDropdownKategoris();
         let table = $('#TabelBarangs').DataTable({
             "paging": true,
@@ -219,13 +232,11 @@
                     render: function(data, type, row) {
                         return `
                             <div  class=" d-flex ">
-                                <form action="editProduk" method="post" class="mr-3 justify-content-center">
-                                    <input type="hidden" name="id" value="${data}">
-                                    <button class="trash-button bg-primary">
-                                        <i class="fas fa-pencil-alt"></i>
-                                    </button>
-                                </form>
-                                <form action="deleteProduk" method="post">
+                                <a href="{{ url('/editProduk/${data}') }}" class="trash-button bg-primary mr-2">
+                                    <i class="fas fa-pencil-alt"></i>
+                                </a>
+                                <form action="{{ route('deleteProduk') }}" method="post">
+                                    @csrf
                                     <input type="hidden" name="id" value="${data}">
                                     <button class="trash-button">
                                         <i class="fas fa-trash-alt"></i>
@@ -238,6 +249,9 @@
                 }
             ],
         });
+        
+
+
         
         $('#selectKategori').on('change', function(){
             $('#TabelBarangs').DataTable().destroy();
@@ -276,7 +290,10 @@
                         },
                     },
                     {
-                        data: 'produks_img'
+                        data: 'produks_img',
+                        render: function(data, type, row) {
+                            return `<image src="{{ asset('CMS Assets') }}/${data}"alt="AdminLTE Logo" class="nav-icon" style="opacity: 0.8;" width="50" height="50"/>`;
+                        },
                     },
                     {
                         data: 'produks_name'
@@ -306,28 +323,26 @@
                         data: 'produks_id',
                         render: function(data, type, row) {
                             return `
-                            <div class="d-flex ">
-                                <form action="editProduk" method="post">
-                                    <input type="hidden" name="id" value="${data}">
-                                    <button class="trash-button">
-                                        <i class="fas fa-pencil"></i>
-                                    </button>
+                                <div  class=" d-flex ">
+                                    <a href="{{ url('/editProduk/${data}') }}" class="trash-button bg-primary mr-2">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <form action="{{ route('deleteProduk') }}" method="post">
+                                        @csrf
+                                        <input type="hidden" name="id" value="${data}">
+                                        <button class="trash-button">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </button>
 
-                                </form>
-                                <form action="deleteProduk" method="post">
-                                    <input type="hidden" name="id" value="${data}">
-                                    <button class="trash-button">
-                                        <i class="fas fa-trash"></i>
-                                    </button>
-
-                                </form>
-                            </div>
+                                    </form>
+                                </div>
                             `;
                         },
                     }
                 ],
             });
         });
+
         $('#customSearchBox').on('keyup', function() {
             table.search(this.value).draw(); // Perform DataTables search
         });
