@@ -124,11 +124,11 @@
         for (let R = range.s.r + 1; R <= range.e.r; R++) {
             // Price column (index 2)
             let hargaBarangCell = XLSX.utils.encode_cell({ r: R, c: 3 });
-            ws[hargaBarangCell].z = "Rp#,##0.00"; // Format as currency
+            ws[hargaBarangCell].z = "Rp #,##0.00"; // Format as currency
 
             // Quantity column (index 3)
             let hargaJualCell = XLSX.utils.encode_cell({ r: R, c: 4 });
-            ws[hargaJualCell].z = "Rp#,##0.00";  // Format as plain number
+            ws[hargaJualCell].z = "Rp #,##0.00";  // Format as plain number
         }
 
         // Style the header row
