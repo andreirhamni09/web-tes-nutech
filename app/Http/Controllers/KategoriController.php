@@ -12,7 +12,7 @@ class KategoriController extends Controller
     {
         try {
             $sql     = "SELECT * FROM kategories"; 
-            $results = DB::select($sql);
+            $results['data'] = DB::select($sql);
             return response()->json($results);            
         } catch (Exception $e) {
             return "Query Error: " . $e->getMessage();
