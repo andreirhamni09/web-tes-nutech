@@ -31,6 +31,18 @@
                         <option value="all" selected>&#xf1b2; Semua</option>
                     </select>
                 </div>
+                
+                
+                <div class="col-8 mb-2 d-flex flex-row-reverse">
+                    <button id="addProduk"  class="btn btn-danger align-middle">
+                        <img src="{{secure_asset('CMS Assets/PlusCircle.png') }}" class="nav-icon mr-1 align-middle"/>
+                        <span class="align-middle">Tambah Produk</span>
+                    </button>    
+                    <button id="exportExcel" class="btn btn-success align-middle mr-3">
+                        <img src="{{secure_asset('CMS Assets/MicrosoftExcelLogo.png') }}" class="nav-icon mr-1 align-middle"/>
+                        <span class="align-middle">Export Excel</span>
+                    </button>    
+                </div>
                 <div class="col-12">
                     <table id="TabelBarangs" class="table table-bordered table-striped">
                         <thead>
