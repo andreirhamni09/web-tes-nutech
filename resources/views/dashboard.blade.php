@@ -35,11 +35,11 @@
                 
                 <div class="col-8 mb-2 d-flex flex-row-reverse">
                     <button id="addProduk"  class="btn btn-danger align-middle">
-                        <img src="{{secure_asset('CMS Assets/PlusCircle.png') }}" class="nav-icon mr-1 align-middle"/>
+                        <img src="{{asset('CMS Assets/PlusCircle.png') }}" class="nav-icon mr-1 align-middle"/>
                         <span class="align-middle">Tambah Produk</span>
                     </button>    
                     <button id="exportExcel" class="btn btn-success align-middle mr-3">
-                        <img src="{{secure_asset('CMS Assets/MicrosoftExcelLogo.png') }}" class="nav-icon mr-1 align-middle"/>
+                        <img src="{{asset('CMS Assets/MicrosoftExcelLogo.png') }}" class="nav-icon mr-1 align-middle"/>
                         <span class="align-middle">Export Excel</span>
                     </button>    
                 </div>
@@ -66,7 +66,7 @@
     <!-- /.content -->
 </div>
 <!-- jQuery -->
-<script src="{{ secure_asset('plugins/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
 <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
 
 
@@ -187,7 +187,7 @@
                 {
                     data: 'produks_img',
                     render: function(data, type, row) {
-                        return `<image src="{{ secure_asset('CMS Assets') }}/${data}"alt="AdminLTE Logo" class="nav-icon" style="opacity: 0.8;" width="50" height="50"/>`;
+                        return `<image src="{{ asset('CMS Assets') }}/${data}"alt="AdminLTE Logo" class="nav-icon" style="opacity: 0.8;" width="50" height="50"/>`;
                     },
                 },
                 {
